@@ -3,60 +3,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        table {
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #fccfcf;
-        }
-
-        th {
-            background-color: #e8a8a8;
-        }
-
-        .visual{
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .form-container {
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .submit-btn {
-            padding: 10px 20px;
-            background-color: #e8a8a8;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-    </style>
+    <title>PO meten</title>
 </head>
 
 <body>
