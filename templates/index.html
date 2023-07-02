@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
         table {
-            width: 100%;
             border-collapse: collapse;
         }
 
@@ -17,6 +17,11 @@
 
         th {
             background-color: #e8a8a8;
+        }
+
+        .visual{
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         .form-container {
@@ -55,12 +60,10 @@
 
 <body>
 
-<p>Bestaande waarden:</p>
-
 <table class="styled-table">
     <tr>
         <th>datum</th>
-        <th>naam</th>
+        <th>oorsprong</th>
         <th>waarde</th>
     </tr>
 
@@ -68,18 +71,48 @@
     {% for item in data %}
         <tr>
             <td>{{ item.created }}</td>
-            <td>{{ item.name }}</td>
+            <td>{% if item.name == 'temp' %}sensor{% else %}handmatig{% endif %}</td>
             <td>{{ item.value }}</td>
         </tr>
     {% endfor %}
 </table>
 
+<div class="visual">
+<canvas id="temperatureChart" style="width:100%;max-width:600px"></canvas>
+</div>
 
-<p>Voeg een temperatuur toe</p>
+<script>
+const xValues = {{ x_values }};
+const yValues = {{ y_values }};
+
+new Chart("temperatureChart", {
+    type: "line",
+    data: {
+        labels: xValues,
+        datasets: [{
+            fill: false,
+
+            backgroundColor: "rgb(232,168,168)",
+            borderColor: "rgb(232,168,168)",
+            data: yValues
+        }]
+    },
+    options: {
+        legend: {display: false},
+        scales: {
+            xAxes: [{ticks: {min: Math.min(...xValues), max: Math.max(...xValues), display: false}}],
+            yAxes: [{ticks: {min: Math.min(...yValues), max: Math.max(...yValues)}}]
+        }
+    }
+});
+</script>
+
+
 
 
 <div class="form-container">
-    <form action="https://po-meten-4vwo.melissalemaire.repl.co/data" method="POST">
+    <form action="/data" method="POST">
+        <p>Voeg een temperatuur toe</p>
         <input type="hidden" name="sensor" value="manual">
         <div class="form-group">
             <label for="datetime">datum en tijd</label>

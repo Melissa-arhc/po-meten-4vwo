@@ -12,7 +12,7 @@ def init_db(db_file):
             (
                 datetime TEXT,
                 sensor TEXT,
-                value REAL
+                value INT
             )
         """
         )
