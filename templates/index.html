@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #fccfcf;
+        }
+
+        th {
+            background-color: #e8a8a8;
+        }
+
+        .form-container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #e8a8a8;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<p>Bestaande waarden:</p>
+
+<table class="styled-table">
+    <tr>
+        <th>datum</th>
+        <th>naam</th>
+        <th>waarde</th>
+    </tr>
+
+    {# geef elke rij weer #}
+    {% for item in data %}
+        <tr>
+            <td>{{ item.created }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.value }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<p>Voeg een temperatuur toe</p>
+
+
+<div class="form-container">
+    <form action="https://po-meten-4vwo.melissalemaire.repl.co/data" method="POST">
+        <input type="hidden" name="sensor" value="manual">
+        <div class="form-group">
+            <label for="datetime">datum en tijd</label>
+            <input type="datetime-local" name="datetime">
+        </div>
+        <div class="form-group">
+            <label for="number">waarde:</label>
+            <input type="number" name="value">
+        </div>
+
+        <button class="submit-btn" type="submit" value="submit">versturen</button>
+    </form>
+</div>
+
+</body>
+</html>
