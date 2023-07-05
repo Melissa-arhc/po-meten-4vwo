@@ -19,7 +19,7 @@ def index():
         TEMPERATURE_SERVICE,
         data={"req": "getall"},
     )
-    api_data = response_api.json()["more"]
+    api_data = response_api.json()["more"] or []
 
     # krijg de data van mijn database
     db_data = db.list_data_points(db_conn)
