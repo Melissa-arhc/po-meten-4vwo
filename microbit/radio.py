@@ -5,14 +5,14 @@ import radio
 radio.on()
 radio.config(group=23)
 
-SENSOR_ID = "191896"
-SENSOR_PWD = "TOP_SECRET"
-SENSOR_NAME = "temp"
+SENSOR_ID = "U00001"
+SENSOR_PWD = "123456"
+SENSOR_NAME = "t"
 
 
 while True:
     if button_a.was_pressed():
-        # krijg temparatuur van microbit
+        # haal temparatuur op van microbit
         value = temperature()
         display.show(value)
         payload = "id={},p={},n={},v={}".format(
