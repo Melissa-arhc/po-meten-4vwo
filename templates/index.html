@@ -21,7 +21,7 @@
     {% for item in data %}
         <tr>
             <td>{{ item.created }}</td>
-            <td>{% if item.name == 'temp' %}sensor{% else %}handmatig{% endif %}</td>
+            <td>{% if item.name == 't' %}sensor{% else %}handmatig{% endif %}</td>
             <td>{{ item.value }}</td>
         </tr>
     {% endfor %}
